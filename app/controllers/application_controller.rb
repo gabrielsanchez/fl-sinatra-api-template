@@ -1,5 +1,6 @@
 require './config/environment'
 require './app/models/giph.rb'
+require './app/models/spotify.rb'
 
 class ApplicationController < Sinatra::Base
 
@@ -10,6 +11,12 @@ class ApplicationController < Sinatra::Base
 
   get '/' do
     erb :index
+  end
+  
+  post '/results' do
+    spot = Spot.new
+    @photo = spot.search(params[:artist])
+    erb :res
   end
 
 end
